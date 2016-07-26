@@ -1,0 +1,14 @@
+﻿        <param name="ControlType" value="1" />
+        <PARAM NAME="_cx" VALUE="12965">
+        <PARAM NAME="_cy" VALUE="7938">
+        <PARAM NAME="ClientOptions" VALUE="127">
+        <PARAM NAME="DisplayTimeFormat" VALUE="0">
+        <PARAM NAME="PtzURL" VALUE="/cgi-bin/camctrl/eCamCtrl.cgi">
+        <PARAM NAME="UserDateFormat" VALUE="-1">
+        <PARAM NAME="PluginCtrlID" VALUE="">
+        <PARAM NAME="StreamingBufferTime" VALUE="0">
+        <PARAM NAME="AutoStartConnection" VALUE="-1">
+        <PARAM NAME="ControlPort" VALUE="554">
+        <PARAM NAME="DarwinConnection" VALUE="0">
+        <PARAM NAME="HttpPort" VALUE="80">
+        <PARAM NAME="RemoteIPAddr" VALUE="192.168.10.101">

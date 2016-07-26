@@ -1,0 +1,233 @@
+﻿<HTML>
+<HEAD>
+    <TITLE>Live View</TITLE>
+    <META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+    <META content=text/css http-equiv=Content-Style-Type>
+    <META content=text/javascript http-equiv=Content-Script-Type>
+    <META content=no-cache http-equiv=pragma>
+    <META content="no-cache, must-revalidate" http-equiv=cache-control>
+    <META content=0 http-equiv=expires>
+    <LINK rel=stylesheet type=text/css href="../css/Primary_style.css" media=all>
+    <LINK rel=stylesheet type=text/css href="../css/live_view_style.css" media=all>
+    <LINK rel=stylesheet type=text/css href="../css/style.css" media=all>
+    <META name=keywords content="jquery,user interface,ui,widgets,interaction,javascript">
+    <META name=description content="jQuery UI is the official jQuery user interface library. It provides interactions, widgets, effects, and theming for creating Rich Internet Applications.">
+    <META name=author content="The jQuery Project">
+    <SCRIPT type=text/javascript src="../jquery.min.js"></SCRIPT>
+
+    <SCRIPT type=text/javascript src="../jquery-ui.min.js"></SCRIPT>
+    <!-- slider -->
+    <LINK rel=stylesheet type=text/css href="../css/jquery-ui.css" media=all><!-- resizable -->
+    <LINK rel="shortcut icon" href="/images/favicon.ico">
+    <LINK rel=icon type=image/x-icon href="/images/favicon.ico">
+    <LINK rel=stylesheet type=text/css href="/css/base.css" media=all>
+    <LINK rel=stylesheet type=text/css href="../css/ui.theme.css" media=all>
+    <SCRIPT type=text/javascript src="../jquery.bgiframe-2.1.2.js"></SCRIPT>
+
+    <SCRIPT type=text/javascript src="../jquery-ui-i18n.min.js"></SCRIPT>
+
+    <SCRIPT type=text/javascript src="../jquery.cookie.js"></SCRIPT>
+
+    <SCRIPT type=text/javascript src="../jquery.blockUI.js"></SCRIPT>
+
+    <SCRIPT type=text/javascript src="../program.js"></SCRIPT>
+
+    <SCRIPT type=text/javascript src="cgi-javascript/live_view.js"></SCRIPT>
+
+    <SCRIPT type=text/javascript src="/tmp/sderror.js"></SCRIPT>
+
+    <SCRIPT type=text/javascript>
+			if( GetCookie( 'Language' ) == null ){
+				Lang = '../Language/EN.js';
+				SetCookie( 'Language', 'EN' );
+			}
+			else{
+				var Lang = GetCookie( 'Language' );
+				Lang = '../Language/'+ Lang +'.js';
+			}
+
+			$( document.createElement('script') ).attr( 'src', Lang ).appendTo('head');
+
+			$(function() {
+				$( "#resizable0" ).resizable({
+					containment:'#area'
+				});
+
+				$( "#resizable0" ).draggable({
+					containment:'#area'
+				});
+				$( "#resizable0" ).draggable( "option", "zIndex", 9999 );
+				$( "#resizable0" ).resizable( "option", "zIndex", 9999 );
+			});
+
+    </SCRIPT>
+
+    <SCRIPT language=javascript>
+if ( DetectionActiveXSupport() ) {
+	document.write( '<body onunload="Stop_Record()">' );
+	var objstr = '<SCRIPT FOR="RTSPCtl" EVENT="Event_TalkDisconnect()" LANGUAGE="JavaScript">';
+			objstr += 'var rtsp = document.getElementById("RTSPCtl");';
+			objstr +=  'rtsp.Set_Talk(0);';
+			objstr +=  '$("#display_talk").val( 1 );';
+			objstr +=  '$("#display_talk").attr( "src", "../images/icon/talk.gif" )';
+			objstr +=  '<\/SCRIPT>';
+	document.write( objstr );
+
+} else {
+	document.write( '<body onunload="Stop_QT()">' );
+}
+    </SCRIPT>
+</HEAD>
+<BODY onunload=Stop_Record()>
+    <SCRIPT language=JavaScript for=RTSPCtl event=Event_TalkDisconnect()>var rtsp = document.getElementById("RTSPCtl");rtsp.Set_Talk(0);$("#display_talk").val( 1 );$("#display_talk").attr( "src", "../images/icon/talk.gif" )</SCRIPT>
+    <INPUT id=Page type=hidden value=live_view> <INPUT id=remote_addr type=hidden value=192.168.10.122> <INPUT id=resolution_width type=hidden value=1280> <INPUT id=resolution_height type=hidden value=720> <INPUT id=rtsp_port type=hidden value=554> <INPUT id=URL_ID type=hidden value=v01> <INPUT id=Sensor type=hidden value=2m> <INPUT id=TVStandards type=hidden value=0> <INPUT id=PTZ_en type=hidden value=0> <INPUT id=PTZ_Protocol type=hidden> <INPUT id=Model type=hidden value=AM1203> <INPUT id=admin_pw type=hidden>
+    <DIV id=wrapper style="WIDTH: 1000px">
+        <DIV id=Left_Border></DIV>
+        <DIV id=header style="WIDTH: 925px">
+            <DIV id=header_left_top></DIV>
+            <DIV id=header_left_bottom></DIV>
+            <DIV id=header_right_top style="LEFT: 911px"></DIV>
+            <DIV id=header_right_bottom style="LEFT: 911px"></DIV>
+            <DIV id=header_top_line style="WIDTH: 897px"></DIV>
+            <DIV id=header_left_line></DIV>
+            <DIV id=header_right_line style="LEFT: 923px"></DIV>
+            <DIV id=header_bottom_line style="WIDTH: 897px"></DIV>
+            <DIV id=logo><IMG id=logo_img src="../images/logo/asoni.gif"></DIV>
+            <DIV id=Liveview_Setup style="LEFT: 690px">
+                <A id=Liveview href="#" jQuery15105103183373190635="2">LiveView</A><A id=Setup href="#" jQuery15105103183373190635="8">Setup</A>
+                <DIV id=Lang_area><SELECT id=Lang jQuery15105103183373190635="1"><OPTION selected value=EN>EN</OPTION><OPTION value=TW>繁中</OPTION><OPTION value=CH>简中</OPTION></SELECT></DIV>
+            </DIV>
+        </DIV>
+        <DIV id=content>
+            <DIV id=primary_live style="WIDTH: 680px">
+                <DIV id=primary_left_top></DIV>
+                <DIV id=primary_left_bottom style="TOP: 501px"></DIV>
+                <DIV id=primary_right_top style="LEFT: 666px"></DIV>
+                <DIV id=primary_right_bottom style="LEFT: 666px; TOP: 501px"></DIV>
+                <DIV id=primary_top_line style="WIDTH: 652px"></DIV>
+                <DIV id=primary_left_line style="HEIGHT: 487px"></DIV>
+                <DIV id=primary_right_line style="HEIGHT: 487px; LEFT: 678px"></DIV>
+                <DIV id=primary_bottom_line style="WIDTH: 652px; TOP: 513px"></DIV>
+                <SCRIPT language=javascript>
+if ( DetectionActiveXSupport() ) {
+	var obj_str = give_activex( 640, 480 );
+	document.write(obj_str);
+} else {
+	document.write('<div id="QTStream" style="position:absolute;"></div>');
+}
+                </SCRIPT>
+
+                <OBJECT id=RTSPCtl style="HEIGHT: 360px; WIDTH: 640px; POSITION: absolute; LEFT: 20px; TOP: 77px" codeBase="/AxRTSP.cab#version=1,0,0,162" classid=CLSID:1384A8DE-7296-49DA-B7F8-8A9A5984BE52 data="data:application/x-oleobject;base64,3qiEE5Zy2km3+IqaWYS+UhAHAAAlQgAANSUAAA==" width=640 height=480></OBJECT>
+            </DIV>
+            <DIV id=secondary_live_close><INPUT onclick=secondary_switch(id) id=control_secondary_arrow_open title=Open src="../images/DPTZ/open.jpg" type=image> </DIV>
+            <DIV id=secondary_live>
+                <DIV id=select_area>
+                    <DIV id=select_top_line></DIV>
+                    <DIV id=select_left_top></DIV>
+                    <DIV id=select_left_line></DIV>
+                    <DIV id=select_left_bottom></DIV>
+                    <DIV id=select_right_top></DIV>
+                    <DIV id=select_right_line></DIV>
+                    <DIV id=select_right_bottom></DIV>
+                    <DIV id=select_bottom_line></DIV><IMG id=video_source_img title="Video Source" src="../images/icon/video_source.gif" width=24 height=24>
+                    <DIV id=video_source_select><SELECT onchange=change_Stat(0) id=Video_Source><OPTION selected value=0>v01</OPTION><OPTION value=1>v02</OPTION><OPTION value=2>v03</OPTION><OPTION value=3>v04</OPTION><OPTION value=4>v05</OPTION><OPTION value=5>v06</OPTION><OPTION value=6>v07</OPTION><OPTION value=7>v08</OPTION></SELECT></DIV><FONT id=video_source_scale size=1>HD (H.264&nbsp;1280 x 720)</FONT>
+                    <DIV id=select_area_for_activex>
+                        <IMG id=rotation_img title=Rotation src="../images/icon/Rotation.gif" width=24 height=24>
+                        <DIV id=rotation_select><SELECT onchange=Event_ImageMode() id=image_rotation name=image_rotation> <OPTION selected value=0>0</OPTION> <OPTION value=1>90</OPTION> <OPTION value=2>180</OPTION> <OPTION value=3>270</OPTION></SELECT> </DIV>
+                    </DIV>
+                </DIV>
+                <DIV id=display_area>
+                    <DIV id=display_top_line></DIV>
+                    <DIV id=display_left_top></DIV>
+                    <DIV id=display_left_line></DIV>
+                    <DIV id=display_left_bottom></DIV>
+                    <DIV id=display_right_top></DIV>
+                    <DIV id=display_right_line></DIV>
+                    <DIV id=display_right_bottom></DIV>
+                    <DIV id=display_bottom_line></DIV><INPUT onclick=Full_Screen() id=display_full_screen title="Full Screen" src="../images/icon/Full_Screen.gif" type=image value=1> <INPUT onclick=change_Real_Size() id=display_real_size title="Real Size" src="../images/icon/Real_Size.gif" type=image value=1> <INPUT onclick=Set_Voice() id=display_listen title=Listen src="../images/icon/listen.gif" type=image value=1> <INPUT onclick=Double_Talk() id=display_talk title=Talk src="../images/icon/talk.gif" type=image value=1> <INPUT onclick=Event_Snapshot() id=display_snapshot title=Snapshot src="../images/icon/photo.gif" type=image value=1> <INPUT onclick=Event_Record() id=display_record title=Record src="../images/icon/record.gif" type=image value=1> <INPUT onclick=show_path() id=display_path title=C:\ src="../images/icon/File.gif" type=image value=1> <INPUT id=record_path readOnly size=18 type=hidden value=C:\> <INPUT id=record_file_name type=hidden>
+                    <DIV id=fps>FPS: <FONT color=blue>20 fps</FONT></DIV>
+                    <DIV id=bps>BPS: <FONT color=blue>1874 Kbps</FONT></DIV>
+                </DIV><!-- ------ PTZ & DPTZ Area --------- //-->
+                <DIV id=DPTZ_Area style="DISPLAY: none">
+                    <DIV id=DPTZ_title name="DPTZ_title">
+                        <DIV id=show_PTZ_table style="DISPLAY: none"><INPUT onclick=show_PTZ_or_DPTZ_Control() id=PTZ type=radio name=PTZ_options>PTZ <INPUT onclick=show_PTZ_or_DPTZ_Control() id=DPTZ CHECKED type=radio name=PTZ_options>DPTZ</DIV>
+                    </DIV>
+                    <DIV id=DPTZ_top_line></DIV>
+                    <DIV id=DPTZ_left_top></DIV>
+                    <DIV id=DPTZ_left_line></DIV>
+                    <DIV id=DPTZ_left_bottom></DIV>
+                    <DIV id=DPTZ_right_top></DIV>
+                    <DIV id=DPTZ_right_line></DIV>
+                    <DIV id=DPTZ_right_bottom></DIV>
+                    <DIV id=DPTZ_bottom_line></DIV>
+                    <DIV id=DPTZ_Remote_Area>
+                        <INPUT onclick="move_dptz('LU')" onmouseover=smooth_Img(id) onmouseout=revice_Img(id) id=arrow_top_left src="../images/DPTZ/keys/GUI-2-OK_01.jpg" type=image> <INPUT onclick="move_dptz('UP')" onmouseover=smooth_Img(id) onmouseout=revice_Img(id) id=arrow_top_middle src="../images/DPTZ/keys/GUI-2-OK_02.jpg" type=image> <INPUT onclick="move_dptz('RU')" onmouseover=smooth_Img(id) onmouseout=revice_Img(id) id=arrow_top_right src="../images/DPTZ/keys/GUI-2-OK_03.jpg" type=image> <INPUT onclick="move_dptz('LEFT')" onmouseover=smooth_Img(id) onmouseout=revice_Img(id) id=arrow_middle_left src="../images/DPTZ/keys/GUI-2-OK_04.jpg" type=image> <IMG id=arrow_middle_middle src="../images/DPTZ/keys/GUI-2-OK_05.jpg"> <INPUT onclick="move_dptz('RIGHT')" onmouseover=smooth_Img(id) onmouseout=revice_Img(id) id=arrow_middle_right src="../images/DPTZ/keys/GUI-2-OK_06.jpg" type=image> <INPUT onclick="move_dptz('LD')" onmouseover=smooth_Img(id) onmouseout=revice_Img(id) id=arrow_bottom_left src="../images/DPTZ/keys/GUI-2-OK_07.jpg" type=image> <INPUT onclick="move_dptz('DOWN')" onmouseover=smooth_Img(id) onmouseout=revice_Img(id) id=arrow_bottom_middle src="../images/DPTZ/keys/GUI-2-OK_08.jpg" type=image> <INPUT onclick="move_dptz('RD')" onmouseover=smooth_Img(id) onmouseout=revice_Img(id) id=arrow_bottom_right src="../images/DPTZ/keys/GUI-2-OK_09.jpg" type=image> <IMG id=arrow_decrease src="../images/DPTZ/keys/Space-key-1.jpg"> <IMG id=arrow_increase src="../images/DPTZ/keys/Space-key-1.jpg"> <IMG id=range_img title="DPTZ Range" src="../images/icon/Range.gif">
+                        <DIV id=DPTZ_range_Area><SELECT id=DPTZ_range> <OPTION selected value=10>10</OPTION> <OPTION value=20>20</OPTION> <OPTION value=30>30</OPTION> <OPTION value=40>40</OPTION> <OPTION value=50>50</OPTION> <OPTION value=60>60</OPTION> <OPTION value=70>70</OPTION> <OPTION value=80>80</OPTION> <OPTION value=90>90</OPTION> <OPTION value=100>100</OPTION></SELECT> </DIV>
+                    </DIV>
+                    <DIV id=PTZ_Remote_Area style="DISPLAY: none">
+                        <DIV id=PTZ_Preset_Point><SELECT onchange=goto_point(66) id=preset_point><OPTION selected value=1>1</OPTION><OPTION value=2>2</OPTION><OPTION value=3>3</OPTION><OPTION value=4>4</OPTION><OPTION value=5>5</OPTION><OPTION value=6>6</OPTION><OPTION value=7>7</OPTION><OPTION value=8>8</OPTION><OPTION value=9>9</OPTION><OPTION value=10>10</OPTION><OPTION value=11>11</OPTION><OPTION value=12>12</OPTION><OPTION value=13>13</OPTION><OPTION value=14>14</OPTION><OPTION value=15>15</OPTION><OPTION value=16>16</OPTION><OPTION value=17>17</OPTION><OPTION value=18>18</OPTION><OPTION value=19>19</OPTION><OPTION value=20>20</OPTION><OPTION value=21>21</OPTION><OPTION value=22>22</OPTION><OPTION value=23>23</OPTION><OPTION value=24>24</OPTION><OPTION value=25>25</OPTION><OPTION value=26>26</OPTION><OPTION value=27>27</OPTION><OPTION value=28>28</OPTION><OPTION value=29>29</OPTION><OPTION value=30>30</OPTION><OPTION value=31>31</OPTION><OPTION value=32>32</OPTION><OPTION value=33>33</OPTION><OPTION value=34>34</OPTION><OPTION value=93>93</OPTION><OPTION value=94>94</OPTION><OPTION value=95>95</OPTION><OPTION value=96>96</OPTION><OPTION value=97>97</OPTION><OPTION value=98>98</OPTION><OPTION value=99>99</OPTION></SELECT></DIV><INPUT onclick=goto_point(64) onmouseover=smooth_Img(id) onmouseout=revice_Img(id) id=save_preset_point title=Save src="../images/PTZ/S&amp;R/save/save.jpg" type=image>
+                        <DIV id=remove_Preset_Point_tr><INPUT onclick=goto_point(65) onmouseover=smooth_Img(id) onmouseout=revice_Img(id) id=remove_preset_point title=Remove src="../images/PTZ/S&amp;R/Remove/Remove.jpg" type=image> </DIV>
+                        <DIV id=menu_Preset_Point_tr style="DISPLAY: none"><INPUT onclick=goto_point(95) onmouseover=smooth_Img(id) onmouseout=revice_Img(id) id=menu_preset_point title=Menu src="../images/PTZ/S&amp;R/menu/menu.jpg" type=image> </DIV><INPUT onmouseup=PTZ_move_Control_UP(6); onmouseover=smooth_Img(id) onmousedown=PTZ_move_Control(6) onmouseout=revice_Img(id) id=ptz_arrow_top_left src="../images/PTZ/KEY/KEY_01.jpg" type=image> <INPUT onmouseup=PTZ_move_Control_UP(1); onmouseover=smooth_Img(id) onmousedown=PTZ_move_Control(1) onmouseout=revice_Img(id) id=ptz_arrow_top_middle src="../images/PTZ/KEY/KEY_02.jpg" type=image> <INPUT onmouseup=PTZ_move_Control_UP(5); onmouseover=smooth_Img(id) onmousedown=PTZ_move_Control(5) onmouseout=revice_Img(id) id=ptz_arrow_top_right src="../images/PTZ/KEY/KEY_03.jpg" type=image> <INPUT onmouseup=PTZ_move_Control_UP(3); onmouseover=smooth_Img(id) onmousedown=PTZ_move_Control(3) onmouseout=revice_Img(id) id=ptz_arrow_middle_left src="../images/PTZ/KEY/KEY_04.jpg" type=image> <INPUT onclick=PTZ_move_Control(0) onmouseover=smooth_Img(id) onmouseout=revice_Img(id) id=ptz_arrow_middle_middle title=Stop src="../images/PTZ/KEY/KEY_05.jpg" type=image> <INPUT onmouseup=PTZ_move_Control_UP(4); onmouseover=smooth_Img(id) onmousedown=PTZ_move_Control(4) onmouseout=revice_Img(id) id=ptz_arrow_middle_right src="../images/PTZ/KEY/KEY_06.jpg" type=image> <INPUT onmouseup=PTZ_move_Control_UP(8); onmouseover=smooth_Img(id) onmousedown=PTZ_move_Control(8) onmouseout=revice_Img(id) id=ptz_arrow_bottom_left src="../images/PTZ/KEY/KEY_07.jpg" type=image> <INPUT onmouseup=PTZ_move_Control_UP(2); onmouseover=smooth_Img(id) onmousedown=PTZ_move_Control(2) onmouseout=revice_Img(id) id=ptz_arrow_bottom_middle src="../images/PTZ/KEY/KEY_08.jpg" type=image> <INPUT onmouseup=PTZ_move_Control_UP(7); onmouseover=smooth_Img(id) onmousedown=PTZ_move_Control(7) onmouseout=revice_Img(id) id=ptz_arrow_bottom_right src="../images/PTZ/KEY/KEY_09.jpg" type=image> <INPUT onclick=Optics_Alt(id) id=Optics_Zoom title=Zoom src="../images/PTZ/function_button/zoom-2.jpg" type=image> <INPUT onclick=Optics_Alt(id) id=Optics_Iris title=Iris src="../images/PTZ/function_button/iris.jpg" type=image> <INPUT onclick=Optics_Alt(id) id=Optics_Focus title=Focus src="../images/PTZ/function_button/focus.jpg" type=image> <INPUT onclick=Optics_Alt(id) id=Optics_Zone title="Zone scan" src="../images/PTZ/function_button/zone_scan_1.jpg" type=image> <INPUT onmouseup="Optics_move_Control_UP('off');" onmouseover=smooth_Img(id) onmousedown="Optics_move_Control('off')" onmouseout=revice_Img(id) id=ptz_optics_decrease title=Out src="../images/PTZ/button/decrease/play_07.jpg" type=image>
+                        <DIV id=IMG_PTZ_STOP><INPUT onclick=PTZ_move_Control(0) onmouseover=smooth_Img(id) onmouseout=revice_Img(id) id=ptz_optics_stop title=Stop src="../images/PTZ/button/stop/play_08.jpg" type=image></DIV><INPUT onmouseup="Optics_move_Control_UP('on');" onmouseover=smooth_Img(id) onmousedown="Optics_move_Control('on')" onmouseout=revice_Img(id) id=ptz_optics_increase title=In src="../images/PTZ/button/increase/play_09.jpg" type=image> <INPUT onmouseup="Optics_move_Control_UP('off');" onmouseover=smooth_Img(id) onmousedown="Optics_move_Control('off')" onmouseout=revice_Img(id) id=ptz_optics_zone_stop title=Off style="DISPLAY: none" src="../images/PTZ/button/Zone_scan_stop/S_1.jpg" type=image> <INPUT onmouseup="Optics_move_Control_UP('on');" onmouseover=smooth_Img(id) onmousedown="Optics_move_Control('on')" onmouseout=revice_Img(id) id=ptz_optics_zone_play title=On style="DISPLAY: none" src="../images/PTZ/button/Zone_scan_increase/P_2.jpg" type=image> <INPUT id=ptz_speed title="PTZ Speed" src="../images/PTZ/KEY/Range.gif" type=image> <SELECT onchange=chg_ptz_speed() id=ptz_speed_select> <OPTION value=1>1</OPTION> <OPTION value=2>2</OPTION> <OPTION value=3>3</OPTION> <OPTION value=4>4</OPTION> <OPTION selected value=5>5</OPTION> <OPTION value=6>6</OPTION> <OPTION value=7>7</OPTION> <OPTION value=8>8</OPTION> <OPTION value=9>9</OPTION> <OPTION value=10>10</OPTION></SELECT>
+                    </DIV>
+                </DIV>
+                <STYLE type=text/css>
+                    #zoomcam {
+                        HEIGHT: 182px;
+                        WIDTH: 130px;
+                        POSITION: absolute;
+                        LEFT: 35px;
+                        TOP: 280px;
+                    }
+
+                    #zoomcam_setup {
+                        BORDER-TOP: #0099ff 1px solid;
+                        BORDER-RIGHT: #0099ff 1px solid;
+                        BORDER-BOTTOM: #0099ff 1px solid;
+                        BORDER-LEFT: #0099ff 1px solid;
+                    }
+                </STYLE>
+
+                <DIV id=zoomcam style="DISPLAY: none">
+                    <TABLE id=zoomcam_setup cellSpacing=5 cellPadding=5 width=195 border=0>
+                        <TBODY>
+                            <TR id=Zoom_wide_tr>
+                                <TD style="FONT-SIZE: 80%" colSpan=2 align=left>
+                                    <SCRIPT>document.write( LV_Zoom );</SCRIPT>
+                                    Zoom
+                                </TD>
+                                <TD colSpan=4 align=left><INPUT id=Zoomvalue_val size=1 jQuery15105103183373190635="7"> </TD>
+                            </TR>
+                            <TR>
+                                <TD><IMG id=Zoomout border=0 src="../images/slider/arrowLeft.gif" jQuery15105103183373190635="5"></TD>
+                                <TD colSpan=4>
+                                    <DIV id=Zoom_slider class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="WIDTH: 80px; MARGIN: 2px" jQuery15105103183373190635="3"><A class="ui-slider-handle ui-state-default ui-corner-all" style="LEFT: 0%" href="http://192.168.10.122/viewer/live_view.html#" jQuery15105103183373190635="4"></A></DIV>
+                                </TD>
+                                <TD><IMG id=Zoomin border=0 src="../images/slider/arrowRight.gif" jQuery15105103183373190635="6"></TD>
+                            </TR>
+                            <TR>
+                                <TD style="FONT-SIZE: 80%" colSpan=2 align=left>
+                                    <SCRIPT>document.write( CP_Speed );</SCRIPT>
+                                    Speed :
+                                </TD>
+                                <TD colSpan=2 align=left><SELECT onchange=zoomcam_change_speed(); id=zoom_speed> <OPTION selected value=0>0</OPTION> <OPTION value=1>1</OPTION> <OPTION value=2>2</OPTION> <OPTION value=3>3</OPTION> <OPTION value=4>4</OPTION> <OPTION value=5>5</OPTION> <OPTION value=6>6</OPTION> <OPTION value=7>7</OPTION></SELECT> </TD>
+                            </TR>
+                            <!--
+                                                            <tr>
+                                                                <td align="center" style="font-size:80%;">Auto Focus</td>
+                                                                <td align="center" colspan="2"><input type="image" id="focus_af" 	  src="../images/PTZ/button/stop/play_08.jpg" title="" onclick="zoomcam_control(this.id);"  ></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="center"><input type="image" id="focus_far" 	  src="../images/PTZ/function_button/focus-1.jpg" title="Far" onclick="zoomcam_control(this.id);"  ></td>
+                                                                <td align="center" style="font-size:80%;">Focus</td>
+                                                                <td align="center"><input type="image" id="focus_near" 	  src="../images/PTZ/function_button/focus.jpg"  title="Near" onclick="zoomcam_control(this.id);"  ></td>
+                                                            </tr>
+                            -->
+                        </TBODY>
+                    </TABLE>
+                </DIV><INPUT onclick=secondary_switch(id) id=control_secondary_arrow_close title=Close src="../images/DPTZ/close.jpg" type=image>
+            </DIV>
+        </DIV>
+    </DIV>
+</BODY>
+</HTML>

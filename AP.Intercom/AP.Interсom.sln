@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AP.Interсom", "AP.Interсom.csproj", "{DBF43C0B-F129-44AB-8CEB-BDF16F2CBB81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AP.Intercom.License", "..\AP.Intercom.License\AP.Intercom.License.csproj", "{61828F70-3C96-4512-97E6-54494EDD8B98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AP.Intercom.HostApp", "..\AP.Intercom.Host\AP.Intercom.HostApp.csproj", "{EF45EB95-9DF0-41D0-97C7-C13431C96E87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AP.Amegia.Intercom", "..\AP.Amegia.Intercom\AP.Amegia.Intercom.csproj", "{79A78698-7B21-430D-976F-587E85CD6047}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AP.Intercom.setup", "..\AP.Intercom.setup\AP.Intercom.setup.vdproj", "{3972ADE5-8E77-46FB-AC8F-D926E4AB286D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBF43C0B-F129-44AB-8CEB-BDF16F2CBB81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBF43C0B-F129-44AB-8CEB-BDF16F2CBB81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBF43C0B-F129-44AB-8CEB-BDF16F2CBB81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBF43C0B-F129-44AB-8CEB-BDF16F2CBB81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61828F70-3C96-4512-97E6-54494EDD8B98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61828F70-3C96-4512-97E6-54494EDD8B98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61828F70-3C96-4512-97E6-54494EDD8B98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61828F70-3C96-4512-97E6-54494EDD8B98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF45EB95-9DF0-41D0-97C7-C13431C96E87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF45EB95-9DF0-41D0-97C7-C13431C96E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF45EB95-9DF0-41D0-97C7-C13431C96E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF45EB95-9DF0-41D0-97C7-C13431C96E87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79A78698-7B21-430D-976F-587E85CD6047}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79A78698-7B21-430D-976F-587E85CD6047}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79A78698-7B21-430D-976F-587E85CD6047}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79A78698-7B21-430D-976F-587E85CD6047}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3972ADE5-8E77-46FB-AC8F-D926E4AB286D}.Debug|Any CPU.ActiveCfg = Debug
+		{3972ADE5-8E77-46FB-AC8F-D926E4AB286D}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,372 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    <meta http-equiv="expires" content="0" />
+    <link rel="stylesheet" href="../css/Primary_style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../css/live_view_style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="all" />
+    <title>Live View</title>
+
+    <meta name="keywords" content="jquery,user interface,ui,widgets,interaction,javascript" />
+    <meta name="description" content="jQuery UI is the official jQuery user interface library. It provides interactions, widgets, effects, and theming for creating Rich Internet Applications." />
+    <meta name="author" content="The jQuery Project" />
+    <script type="text/javascript" src="../jquery.min.js"></script>
+    <script type="text/javascript" src="../jquery-ui.min.js"></script>
+
+    <!-- slider -->
+    <link rel="stylesheet" href="../css/jquery-ui.css" type="text/css" media="all" />
+
+    <!-- resizable -->
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/base.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../css/ui.theme.css" type="text/css" media="all" />
+
+    <script type="text/javascript" src="../jquery.bgiframe-2.1.2.js"></script>
+    <script type="text/javascript" src="../jquery-ui-i18n.min.js"></script>
+    <script type="text/javascript" src="../jquery.cookie.js"></script>
+    <script type="text/javascript" src="../jquery.blockUI.js"></script>
+    <script type="text/javascript" src="../program.js"></script>
+    <script type="text/javascript" src="cgi-javascript/live_view.js"></script>
+    <script type="text/javascript" src="/tmp/sderror.js"></script>
+    <script type="text/javascript">
+			if( GetCookie( 'Language' ) == null ){
+				Lang = '../Language/EN.js';
+				SetCookie( 'Language', 'EN' );
+			}
+			else{
+				var Lang = GetCookie( 'Language' );
+				Lang = '../Language/'+ Lang +'.js';
+			}
+
+			$( document.createElement('script') ).attr( 'src', Lang ).appendTo('head');
+
+			$(function() {
+				$( "#resizable0" ).resizable({
+					containment:'#area'
+				});
+
+				$( "#resizable0" ).draggable({
+					containment:'#area'
+				});
+				$( "#resizable0" ).draggable( "option", "zIndex", 9999 );
+				$( "#resizable0" ).resizable( "option", "zIndex", 9999 );
+			});
+
+    </script>
+</head>
+
+<script language="javascript">
+if ( DetectionActiveXSupport() ) {
+	document.write( '<body onunload="Stop_Record()">' );
+	var objstr = '<SCRIPT FOR="RTSPCtl" EVENT="Event_TalkDisconnect()" LANGUAGE="JavaScript">';
+			objstr += 'var rtsp = document.getElementById("RTSPCtl");';
+			objstr +=  'rtsp.Set_Talk(0);';
+			objstr +=  '$("#display_talk").val( 1 );';
+			objstr +=  '$("#display_talk").attr( "src", "../images/icon/talk.gif" )';
+			objstr +=  '<\/SCRIPT>';
+	document.write( objstr );
+
+} else {
+	document.write( '<body onunload="Stop_QT()">' );
+}
+</script>
+
+<input type="hidden" id="Page" value="live_view" />
+<input type="hidden" id="remote_addr" />
+<input type="hidden" id="resolution_width" />
+<input type="hidden" id="resolution_height" />
+<input type="hidden" id="rtsp_port" />
+<input type="hidden" id="URL_ID" />
+<input type="hidden" id="Sensor" />
+<input type="hidden" id="TVStandards" />
+<input type="hidden" id="PTZ_en" value=0 />
+<input type="hidden" id="PTZ_Protocol" />
+<input type="hidden" id="Model" />
+<input type="hidden" id="admin_pw" />
+
+<div id="wrapper">
+    <div id="Left_Border"></div>
+
+    <div id="header">
+        <div id="header_left_top"></div>
+        <div id="header_left_bottom"></div>
+        <div id="header_right_top"></div>
+        <div id="header_right_bottom"></div>
+        <div id="header_top_line"></div>
+        <div id="header_left_line"></div>
+        <div id="header_right_line"></div>
+        <div id="header_bottom_line"></div>
+
+        <div id="logo" style="display:none;"><img id="logo_img" src="../images/logo/logo.gif" /></div>
+        <div id="Liveview_Setup">
+            <a id="Liveview" href="#"></a>
+            <a id="Setup" href="#"></a>
+
+            <div id="Lang_area"></div>
+        </div>
+    </div>
+
+    <div id="content">
+        <div id="primary_live">
+            <div id="primary_left_top"></div>
+            <div id="primary_left_bottom"></div>
+            <div id="primary_right_top"></div>
+            <div id="primary_right_bottom"></div>
+            <div id="primary_top_line">
+            </div>
+            <div id="primary_left_line"></div>
+            <div id="primary_right_line"></div>
+            <div id="primary_bottom_line"></div>
+
+            <script language="javascript">
+if ( DetectionActiveXSupport() ) {
+	var obj_str = give_activex( 640, 480 );
+	document.write(obj_str);
+} else {
+	document.write('<div id="QTStream" style="position:absolute;"></div>');
+}
+            </script>
+
+        </div>
+
+        <div id="secondary_live_close">
+            <input type="image" id="control_secondary_arrow_open" src="../images/DPTZ/open.jpg" onclick="secondary_switch(id)" />
+        </div>
+
+        <div id="secondary_live">
+            <div id="select_area">
+                <div id="select_top_line"></div>
+                <div id="select_left_top"></div>
+                <div id="select_left_line"></div>
+                <div id="select_left_bottom"></div>
+                <div id="select_right_top"></div>
+                <div id="select_right_line"></div>
+                <div id="select_right_bottom"></div>
+                <div id="select_bottom_line"></div>
+
+                <img id="video_source_img" src="../images/icon/video_source.gif" width=24 height=24 />
+                <div id="video_source_select"></div>
+                <font id="video_source_scale" size=1></font>
+
+                <div id="select_area_for_activex" style="display:none;">
+                    <img id="rotation_img" src="../images/icon/Rotation.gif" width=24 height=24 />
+                    <div id="rotation_select">
+                        <select name="image_rotation" id="image_rotation" onchange="Event_ImageMode()">
+                            <option value=0>0</option>
+                            <option value=1>90</option>
+                            <option value=2>180</option>
+                            <option value=3>270</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="display_area" style="display:none;">
+                <div id="display_top_line"></div>
+                <div id="display_left_top"></div>
+                <div id="display_left_line"></div>
+                <div id="display_left_bottom"></div>
+                <div id="display_right_top"></div>
+                <div id="display_right_line"></div>
+                <div id="display_right_bottom"></div>
+                <div id="display_bottom_line"></div>
+
+                <input type="image" id="display_full_screen" src="../images/icon/Full_Screen.gif" onclick="Full_Screen()" value=1 />
+                <input type="image" id="display_real_size" src="../images/icon/Real_Size.gif" onclick="change_Real_Size()" value=1 />
+                <input type="image" id="display_listen" src="../images/icon/listen.gif" onclick="Set_Voice()" value=1 />
+                <input type="image" id="display_talk" src="../images/icon/talk.gif" onclick="Double_Talk()" value=1 />
+                <input type="image" id="display_snapshot" src="../images/icon/photo.gif" onclick="Event_Snapshot()" value=1 />
+                <input type="image" id="display_record" src="../images/icon/record.gif" onclick="Event_Record()" value=1 />
+                <input type="image" id="display_path" src="../images/icon/File.gif" onclick="show_path()" value=1 />
+
+                <input type="hidden" id="record_path" size="18" value="C:/" readonly="readonly" />
+                <input type="hidden" id="record_file_name" />
+                <div id="fps"></div>
+                <div id="bps"></div>
+            </div>
+            <!-- ------ PTZ & DPTZ Area --------- //-->
+            <div id="DPTZ_Area" style="display: none;">
+                <div id="DPTZ_title" name="DPTZ_title">
+                    <div id="show_PTZ_table" style="display: none;"><input type="radio" id="PTZ" name="PTZ_options" onclick="show_PTZ_or_DPTZ_Control()" />PTZ <input type="radio" id="DPTZ" name="PTZ_options" onclick="show_PTZ_or_DPTZ_Control()" checked="checked" />DPTZ</div>
+                </div>
+
+                <div id="DPTZ_top_line"></div>
+                <div id="DPTZ_left_top"></div>
+                <div id="DPTZ_left_line"></div>
+                <div id="DPTZ_left_bottom"></div>
+                <div id="DPTZ_right_top"></div>
+                <div id="DPTZ_right_line"></div>
+                <div id="DPTZ_right_bottom"></div>
+                <div id="DPTZ_bottom_line"></div>
+
+                <div id="DPTZ_Remote_Area" style="display: none;">
+                    <input type="image" id="arrow_top_left" src="../images/DPTZ/keys/GUI-2-OK_01.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onclick="move_dptz('LU')" />
+                    <input type="image" id="arrow_top_middle" src="../images/DPTZ/keys/GUI-2-OK_02.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onclick="move_dptz('UP')" />
+                    <input type="image" id="arrow_top_right" src="../images/DPTZ/keys/GUI-2-OK_03.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onclick="move_dptz('RU')" />
+
+                    <input type="image" id="arrow_middle_left" src="../images/DPTZ/keys/GUI-2-OK_04.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onclick="move_dptz('LEFT')" />
+                    <img id="arrow_middle_middle" src="../images/DPTZ/keys/GUI-2-OK_05.jpg" />
+
+                    <input type="image" id="arrow_middle_right" src="../images/DPTZ/keys/GUI-2-OK_06.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onclick="move_dptz('RIGHT')" />
+
+                    <input type="image" id="arrow_bottom_left" src="../images/DPTZ/keys/GUI-2-OK_07.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onclick="move_dptz('LD')" />
+                    <input type="image" id="arrow_bottom_middle" src="../images/DPTZ/keys/GUI-2-OK_08.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onclick="move_dptz('DOWN')" />
+                    <input type="image" id="arrow_bottom_right" src="../images/DPTZ/keys/GUI-2-OK_09.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onclick="move_dptz('RD')" />
+
+                    <img id="arrow_decrease" src="../images/DPTZ/keys/Space-key-1.jpg" />
+                    <img id="arrow_increase" src="../images/DPTZ/keys/Space-key-1.jpg" />
+
+                    <img id="range_img" src="../images/icon/Range.gif">
+                    <div id="DPTZ_range_Area">
+                        <select id="DPTZ_range">
+                            <option value=10>10</option>
+                            <option value=20>20</option>
+                            <option value=30>30</option>
+                            <option value=40>40</option>
+                            <option value=50>50</option>
+                            <option value=60>60</option>
+                            <option value=70>70</option>
+                            <option value=80>80</option>
+                            <option value=90>90</option>
+                            <option value=100>100</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="PTZ_Remote_Area" style="display: none;">
+                    <div id="PTZ_Preset_Point" style="display:;"></div>
+
+                    <input type="image" id="save_preset_point" src="../images/PTZ/S&R/save/save.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onclick="goto_point(64)" />
+                    <div id="remove_Preset_Point_tr" style="display:;">
+                        <input type="image" id="remove_preset_point" src="../images/PTZ/S&R/Remove/Remove.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onclick="goto_point(65)" />
+                    </div>
+                    <div id="menu_Preset_Point_tr" style="display: none;">
+                        <input type="image" id="menu_preset_point" src="../images/PTZ/S&R/menu/menu.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onclick="goto_point(95)" />
+                    </div>
+                    <input type="image" id="ptz_arrow_top_left" src="../images/PTZ/KEY/KEY_01.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onmousedown="PTZ_move_Control(6)" onmouseup="PTZ_move_Control_UP(6);" />
+                    <input type="image" id="ptz_arrow_top_middle" src="../images/PTZ/KEY/KEY_02.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onmousedown="PTZ_move_Control(1)" onmouseup="PTZ_move_Control_UP(1);" />
+                    <input type="image" id="ptz_arrow_top_right" src="../images/PTZ/KEY/KEY_03.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onmousedown="PTZ_move_Control(5)" onmouseup="PTZ_move_Control_UP(5);" />
+
+                    <input type="image" id="ptz_arrow_middle_left" src="../images/PTZ/KEY/KEY_04.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onmousedown="PTZ_move_Control(3)" onmouseup="PTZ_move_Control_UP(3);" />
+                    <input type="image" id="ptz_arrow_middle_middle" src="../images/PTZ/KEY/KEY_05.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onclick="PTZ_move_Control(0)" />
+                    <input type="image" id="ptz_arrow_middle_right" src="../images/PTZ/KEY/KEY_06.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onmousedown="PTZ_move_Control(4)" onmouseup="PTZ_move_Control_UP(4);" />
+
+                    <input type="image" id="ptz_arrow_bottom_left" src="../images/PTZ/KEY/KEY_07.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onmousedown="PTZ_move_Control(8)" onmouseup="PTZ_move_Control_UP(8);" />
+                    <input type="image" id="ptz_arrow_bottom_middle" src="../images/PTZ/KEY/KEY_08.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onmousedown="PTZ_move_Control(2)" onmouseup="PTZ_move_Control_UP(2);" />
+                    <input type="image" id="ptz_arrow_bottom_right" src="../images/PTZ/KEY/KEY_09.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onmousedown="PTZ_move_Control(7)" onmouseup="PTZ_move_Control_UP(7);" />
+
+                    <input type="image" id="Optics_Zoom" src="../images/PTZ/function_button/zoom.jpg" onclick="Optics_Alt(id)" />
+                    <input type="image" id="Optics_Iris" src="../images/PTZ/function_button/iris.jpg" onclick="Optics_Alt(id)" />
+                    <input type="image" id="Optics_Focus" src="../images/PTZ/function_button/focus.jpg" onclick="Optics_Alt(id)" />
+                    <input type="image" id="Optics_Zone" src="../images/PTZ/function_button/zone_scan_1.jpg" onclick="Optics_Alt(id)" />
+
+                    <input type="image" id="ptz_optics_decrease" src="../images/PTZ/button/decrease/play_07.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onmousedown="Optics_move_Control('off')" onmouseup="Optics_move_Control_UP('off');" />
+                    <div id="IMG_PTZ_STOP"></div>
+
+                    <input type="image" id="ptz_optics_increase" src="../images/PTZ/button/increase/play_09.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" onmousedown="Optics_move_Control('on')" onmouseup="Optics_move_Control_UP('on');" />
+
+                    <input type="image" id="ptz_optics_zone_stop" src="../images/PTZ/button/Zone_scan_stop/S_1.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" style="display: none;" onmousedown="Optics_move_Control('off')" onmouseup="Optics_move_Control_UP('off');" />
+                    <input type="image" id="ptz_optics_zone_play" src="../images/PTZ/button/Zone_scan_increase/P_2.jpg" onmouseover="smooth_Img(id)" onmouseout="revice_Img(id)" style="display: none;" onmousedown="Optics_move_Control('on')" onmouseup="Optics_move_Control_UP('on');" />
+
+                    <input type="image" id="ptz_speed" src="../images/PTZ/KEY/Range.gif" />
+                    <select id="ptz_speed_select" onchange="chg_ptz_speed()">
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                        <option value=6>6</option>
+                        <option value=7>7</option>
+                        <option value=8>8</option>
+                        <option value=9>9</option>
+                        <option value=10>10</option>
+                    </select>
+                </div>
+
+
+
+            </div>
+
+
+            <style type="text/css">
+                <!--
+                #zoomcam {
+                    position: absolute;
+                    top: 280px;
+                    left: 35px;
+                    width: 130px;
+                    height: 182px;
+                }
+
+                #zoomcam_setup {
+                    border-style: solid;
+                    border-width: 1px;
+                    border-color: #0099ff;
+                }
+                -->
+            </style>
+
+
+
+
+
+            <div id="zoomcam" style="display:none;">
+
+                <table id="zoomcam_setup" width="195" cellspacing="5" cellpadding="5" style border=0>
+                    <tr id="Zoom_wide_tr">
+                        <td colspan=2 align="left" style="font-size:80%;">
+                        <script>document.write( LV_Zoom );</script></td>
+                        <td align="left" colspan="4">
+                            <input type="text" id="Zoomvalue_val" size="1" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img id="Zoomout" src="../images/slider/arrowLeft.gif" border="0" /></td>
+                        <td colspan=4><div id="Zoom_slider" style="width:80px; margin: 2px;"></div></td>
+                        <td><img id="Zoomin" src="../images/slider/arrowRight.gif" border="0" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan=2 align="left" colspan="1" style="font-size:80%;">
+                        <script>document.write( CP_Speed );</script></td>
+                        <td align="left" colspan="2">
+                            <select id="zoom_speed" onchange="zoomcam_change_speed();">
+                                <option value=0>0</option>
+                                <option value=1>1</option>
+                                <option value=2>2</option>
+                                <option value=3>3</option>
+                                <option value=4>4</option>
+                                <option value=5>5</option>
+                                <option value=6>6</option>
+                                <option value=7>7</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <!--
+                                                    <tr>
+                                                        <td align="center" style="font-size:80%;">Auto Focus</td>
+                                                        <td align="center" colspan="2"><input type="image" id="focus_af" 	  src="../images/PTZ/button/stop/play_08.jpg" title="" onclick="zoomcam_control(this.id);"  ></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="center"><input type="image" id="focus_far" 	  src="../images/PTZ/function_button/focus-1.jpg" title="Far" onclick="zoomcam_control(this.id);"  ></td>
+                                                        <td align="center" style="font-size:80%;">Focus</td>
+                                                        <td align="center"><input type="image" id="focus_near" 	  src="../images/PTZ/function_button/focus.jpg"  title="Near" onclick="zoomcam_control(this.id);"  ></td>
+                                                    </tr>
+                    -->
+                </table>
+
+
+            </div>
+
+            <input type="image" id="control_secondary_arrow_close" src="../images/DPTZ/close.jpg" title="Close" onclick="secondary_switch(id)" />
+        </div>
+    </div>
+</div>
+	</body>
+</html>

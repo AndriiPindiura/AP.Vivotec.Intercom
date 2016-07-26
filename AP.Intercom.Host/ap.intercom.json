@@ -1,0 +1,10 @@
+﻿{
+  "CameraIP": "192.168.10.101",
+  "HttpPort": 80,
+  "UserName": "root",
+  "Password": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAnxWxapkQuUi0vmUH9P16vwAAAAACAAAAAAAQZgAAAAEAACAAAADc78Uz18dy2etNnIOnV+5kH1G0KmVfeOTRxBE3KNvU2QAAAAAOgAAAAAIAACAAAACFy6cNU/t4udXXVg3nUbkobiVEbjLNEDbq3cSQfx6N1hAAAACYPjtmM+68i/H/+u9nDL5PQAAAAH/DLFCwHyW7itGklI0n6F95bj6qJ52RPdeZl4B57+2eS8U+eY4qoXGgeFcyPNGFVBNlZdd2h973WQWQA3dvwpU=",
+  "RecordPath": "C:\\Record\\",
+  "OpenDelay": 500,
+  "CloseDelay": 1000,
+  "LicenseList": [ "y3K65LeJj5NbHUMcWWH8c7SNK6I=" ]
+}

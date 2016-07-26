@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+
+
+    </script>
+</head>
+<body>
+    <!--CLSID:64865E5A-E8D7-44C1-89E1-99A84F6E56D0-->
+    <!--CLSID:70EDCF63-CA7E-4812-8528-DA1EA2FD53B6-->
+    <OBJECT id=vivotek name="vivotek"
+            style="HEIGHT: 100%; WIDTH: 100%"
+            standby="Loading plug-in..."
+            codeBase="/VVTK_Plugin_Installer.exe#version=1,0,0,125"
+            classid=CLSID:64865E5A-E8D7-44C1-89E1-99A84F6E56D0></OBJECT>
+    <button onclick="connect();">Connect</button>
+    <button onclick="fs();">FullScreen</button>
+
+    <script>
+        var vivotek = document.getElementById("vivotek");
+        //vivotek.SetAttribute("AutoStartConnection", "true");
+        //vivotek.SetAttribute("RemoteIPAddr", "192.168.10.101");
+        //vivotek.SetAttribute("HttpPort", "80");
+        //vivotek.SetAttribute("UserName", "root");
+        //vivotek.SetAttribute("Password", "1q2w3e4r");
+        //vivotek.SetAttribute("StretchFullScreen", "0");
+        function connect() {
+
+            vivotek.AutoStartConnection = true;
+            vivotek.RemoteIPAddr = "192.168.10.115";
+            vivotek.HttpPort = "80";
+            vivotek.UserName = "root";
+            vivotek.Password = "1q2w3e4r";
+            alert("connect");
+
+            vivotek.Connect();
+        }
+        function fs() {
+            alert(vivotek.StretchFullScreen);
+            vivotek.SetFullScreen(true);
+        }
+        //function WinLessPluginCtrl::OnDOChange(param) {
+        //    alert('DO');// 0:failed, 1:success
+        //    //if (param == true)
+        //    //{
+        //    //    //logBlock.innerHTML += "Change DO success, ";
+        //    //    $.getScript("/cgi-bin/admin/getparam.cgi?status_do_i0",function(){
+        //    //        DOButtonStatusUpdate(true);
+        //    //    });
+        //    //}
+        //    //else
+        //    //{
+        //    //    //logBlock.innerHTML += "Change DO failed, ";
+        //    //    DOButtonStatusUpdate();
+        //    //}
+        //}
+
+        function vivotek::OnConnectionOK(param) { // 1:means streaming contains video, 2:means streaming contains audio
+            alert("123");
+            //bContainAudio = false; //Kent, set init value = false, means contains no audio.
+            //if (param == 1) {
+            //    //alert('streaming contains video');
+            //    bContainVideo = true;
+            //    resizePlugin();
+            //}
+            //else if (param == 2) {
+            //    //alert('streaming contains audio')
+            //    bContainAudio = true;
+            //    //logBlock.innerHTML += "</br>streaming contains audio</br> ";
+            //}
+            //$("#StreamSelector").attr("disabled", false);
+        }
+
+        //function vivotek::OnConnectionBroken(param) {
+        //    alert('123');
+        //    //if (param == 1) // means streaming contains video
+        //    //{
+        //    //    //alert('OnConnectionBroken: streaming contains video');
+        //    //    //ControlForm.chkVideo.checked = false;
+        //    //}
+        //    //else if (param == 2) // means streaming contains audio
+        //    //{
+        //    //    //alert('OnConnectionBroken: streaming contains audio');
+        //    //    //ControlForm.chkAudio.checked = false;
+        //    //}
+        //}
+    </script>
+
+</body>
+</html>
